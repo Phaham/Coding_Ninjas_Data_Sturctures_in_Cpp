@@ -21,14 +21,14 @@ Sample Output 1 :
 
 /************************************************ SOLUTION **************************************************************************/
 
-
 #include <queue>
-
+#include <stack>
+using namespace std;
 vector<int> kSmallest(int *input, int n, int k) {
 	
 	priority_queue<int>min;
     
-    for(int i = 0; i < k; i++){	//PUSH FIRST K ELEMENT IN THE pq
+    for(int i = 0; i < k; i++){	
         min.push(input[i]);
         
     }
@@ -40,11 +40,16 @@ vector<int> kSmallest(int *input, int n, int k) {
         
         }
     }
-    
-    while(!min.empty()){
-        
-        cout<<min.top()<<endl;
+    stack<int> temp;
+    while(!min.empty()){  
+        //cout<<min.top()<<" ";
+        temp.push(min.top());
         min.pop();
+    
+    }
+    while(!temp.empty()){  
+        cout<<temp.top()<<" ";
+        temp.pop();
     
     }
 }
