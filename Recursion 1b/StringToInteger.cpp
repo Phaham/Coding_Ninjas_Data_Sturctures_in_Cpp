@@ -16,11 +16,31 @@ Sample Output 2 :
 
 /******************************************************** SOLUTION ******************************************************************/
 
-
+int length(char input[])
+{
+    int len = 0;
+    for (int i = 0; input[i] != '\0'; i++)
+    {
+        len++;
+    }
+    return len;
+}
+int power(int x, int n)
+{
+    if (n == 0)
+    {
+        return 1;
+    }
+    int smallpower = power(x, n - 1);
+    return smallpower * x;
+}
 int stringToNumber(char input[]) {
-    	int  intValue;
-     	intValue=atoi(input);
-	
+
+    if(length(input)==1)
+        return input[0]-48;
     
-    	return intValue;
+    int a=stringToNumber(input+1);
+    int b=input[0]-48;
+    
+    return b*power(10,length(input)-1)+a;
 }
